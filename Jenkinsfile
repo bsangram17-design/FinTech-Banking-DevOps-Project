@@ -15,6 +15,7 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
+        
         sh 'docker build -t fintech-api app/'
       }
     }
@@ -34,8 +35,9 @@ pipeline {
     stage('Push Image') {
       steps {
         sh '''
-      
-          docker push $DOCKER_IMAGE
+           docker tag fintech-api bsan17/fintech-api:latest
+
+          docker push bsan17/fintech-api:latest
         '''
       }
     }
