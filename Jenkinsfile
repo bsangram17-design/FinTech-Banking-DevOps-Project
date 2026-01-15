@@ -8,8 +8,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker tag fintech-api yourdockerhub/fintech-api'
-        sh 'docker push yourdockerhub/fintech-api'
+        sh 'docker push fintech-api'
       }
     }
     stage('Deploy') {

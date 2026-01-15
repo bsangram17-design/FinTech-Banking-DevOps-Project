@@ -1,6 +1,6 @@
 resource "aws_security_group" "fintech_sg" {
   name = "fintech-sg"
-
+  vpc_id = module.vpc.vpc_id
   ingress {
     from_port   = 80
     to_port     = 80
