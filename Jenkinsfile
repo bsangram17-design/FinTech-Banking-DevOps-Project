@@ -15,7 +15,7 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t fintech-api .'
+        sh 'docker build -t fintech-api app/'
       }
     }
 
