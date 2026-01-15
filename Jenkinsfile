@@ -1,20 +1,58 @@
 pipeline {
   agent any
+
+  environment {
+    DOCKER_IMAGE = "fintech-api"
+  }
+
   stages {
-    stage('Build') {
+
+    stage('Checkout Code') {
+      steps {
+        git branch: 'main', url: 'https://github.com/bsangram17-design/FinTech-Banking-DevOps-Project.git'
+      }
+    }
+
+    stage('Build Docker Image') {
       steps {
         sh 'docker build -t fintech-api .'
       }
     }
-    stage('Push') {
+
+    stage('Docker Login') {
       steps {
-        sh 'docker push fintech-api'
+        withCredentials([usernamePassword(
+          credentialsId: 'dockerhub-creds',
+          usernameVariable: 'DOCKER_USER',
+          passwordVariable: 'DOCKER_PASS'
+        )]) {
+          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+        }
       }
     }
-    stage('Deploy') {
+
+    stage('Push Image') {
+      steps {
+        sh '''
+      
+          docker push $DOCKER_IMAGE
+        '''
+      }
+    }
+
+    stage('Deploy (Blue-Green)') {
       steps {
         sh 'bash scripts/blue-green.sh'
       }
+    }
+  }
+
+  post {
+    success {
+      echo 'Deployment completed successfully'
+    }
+    failure {
+      echo 'Deployment failed – rollback required'
     }
   }
 }
