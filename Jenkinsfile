@@ -40,7 +40,7 @@ pipeline {
       steps {
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
           credentialsId: 'aws-creds']]) {
-          sh 'bash scripts/blue-green.sh'
+          sh 'bash Scripts/blue-green.sh'
         }
       }
     }
