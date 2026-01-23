@@ -10,7 +10,7 @@ pipeline {
     stage('Checkout') {
       steps {
         git branch: 'main',
-            url: 'https://github.com/yourusername/fintech-devops.git'
+            url: 'https://github.com/bsangram17-design/FinTech-Banking-DevOps-Project.git'
       }
     }
 

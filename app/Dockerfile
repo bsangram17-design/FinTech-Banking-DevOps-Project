@@ -12,7 +12,7 @@ RUN groupadd -r appgroup && useradd -r -g appgroup appuser
 RUN pip install --no-cache-dir flask
 
 # 5. Copy the application code
-COPY api.py .
+COPY app.py .
 
 # 6. Change ownership of the app directory to the non-root user
 RUN chown -R appuser:appgroup /app
@@ -24,4 +24,4 @@ USER appuser
 EXPOSE 5000
 
 # 9. Run the application
-CMD ["python", "api.py"]
+CMD ["python", "app.py"]

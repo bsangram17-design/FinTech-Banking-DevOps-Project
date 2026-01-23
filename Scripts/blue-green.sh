@@ -2,10 +2,10 @@
 set -e
 
 # ===== CONFIG =====
-LISTENER_ARN="PASTE_LISTENER_ARN_HERE"
-BLUE_TG_ARN="PASTE_BLUE_TG_ARN_HERE"
-GREEN_TG_ARN="PASTE_GREEN_TG_ARN_HERE"
-IMAGE="yourdockerhub/fintech-api:latest"
+LISTENER_ARN="arn:aws:elasticloadbalancing:ap-south-1:301139400808:listener/app/fintech-alb/05ca8c6ddaf7c995/c3b9fc4e5644eb58"
+BLUE_TG_ARN="arn:aws:elasticloadbalancing:ap-south-1:301139400808:targetgroup/fintech-blue/38cc4e76af747b64"
+GREEN_TG_ARN="arn:aws:elasticloadbalancing:ap-south-1:301139400808:targetgroup/fintech-green/7aad0dd76506f89a"
+IMAGE="bsan17/fintech-api:latest"
 
 echo "Detecting active target group..."
 
