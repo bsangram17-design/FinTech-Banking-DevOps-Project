@@ -1,15 +1,11 @@
-output "alb_dns" {
-  value = aws_lb.alb.dns_name
+output "cluster_name" {
+  value = module.eks.cluster_name
 }
 
-output "listener_arn" {
-  value = aws_lb_listener.http.arn
+output "cluster_endpoint" {
+  value = module.eks.cluster_endpoint
 }
 
-output "blue_tg_arn" {
-  value = aws_lb_target_group.blue.arn
-}
-
-output "green_tg_arn" {
-  value = aws_lb_target_group.green.arn
+output "oidc_provider_arn" {
+  value = module.eks.oidc_provider_arn
 }
