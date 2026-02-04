@@ -2,7 +2,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
 
-  cluster_name    = "fintech-eks"
+  cluster_name    = var.cluster_name
   cluster_version = "1.29"
 
   vpc_id     = aws_vpc.main.id
@@ -16,7 +16,7 @@ module "eks" {
       desired_size = 2
       min_size     = 1
       max_size     = 3
-      instance_types = ["c7i-flex.large"]
+      instance_types = [var.node_instance_type]
     }
   }
 }
