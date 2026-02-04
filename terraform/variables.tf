@@ -1,11 +1,11 @@
-variable "project_name" {
+variable "project" {
   default = "fintech"
 }
 
-variable "instance_type" {
-  default = "t3.micro"
+variable "cluster_name" {
+  default = "fintech-eks"
 }
 
-variable "key_name" {
-  description = "EC2 key pair name"
+variable "node_instance_type" {
+  default = "t3.medium"
 }
