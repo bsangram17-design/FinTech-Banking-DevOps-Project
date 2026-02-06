@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: fintech-api
-        image: yourdockerhub/fintech-api:v1
+        image: bsan17/fintech-api:v1
         ports:
         - containerPort: 5000
         readinessProbe:
