@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintech-api-green
+  namespace: fintech
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fintech-api
+      version: green
+  template:
+    metadata:
+      labels:
+        app: fintech-api
+        version: green
+    spec:
+      containers:
+      - name: fintech-api
+        image: bsan17/fintech-api:v2
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
