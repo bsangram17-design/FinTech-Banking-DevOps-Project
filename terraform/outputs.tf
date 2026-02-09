@@ -6,6 +6,6 @@ output "cluster_endpoint" {
   value = module.eks.cluster_endpoint
 }
 
-output "oidc_provider_arn" {
-  value = module.eks.oidc_provider_arn
+output "configure_kubectl" {
+  value = "aws eks update-kubeconfig --region ap-south-1 --name ${module.eks.cluster_name}"
 }
