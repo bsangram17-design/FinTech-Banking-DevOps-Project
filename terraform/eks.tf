@@ -1,22 +1,26 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 20.0"
+  version = "20.8.5"
 
   cluster_name    = var.cluster_name
   cluster_version = "1.29"
 
-  vpc_id     = aws_vpc.main.id
-  subnet_ids = [
-    aws_subnet.public_1.id,
-    aws_subnet.public_2.id
-  ]
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnets
+
+  enable_irsa = true
 
   eks_managed_node_groups = {
     default = {
-      desired_size = 2
+      instance_types = [var.node_instance_type]
+
       min_size     = 1
       max_size     = 3
-      instance_types = [var.node_instance_type]
+      desired_size = 2
+
+      capacity_type = "ON_DEMAND"
     }
   }
+
+  cluster_endpoint_public_access = true
 }
